@@ -11,6 +11,8 @@ from sklearn.metrics import (
 )
 import warnings
 
+import joblib
+
 # Pokus o import XGBoost
 try:
     from xgboost import XGBClassifier
@@ -167,3 +169,7 @@ print(f"MCC:       {matthews_corrcoef(y_test_final, y_pred_final):.4f}  <-- Kľ�
 print(f"F1-Score:  {f1_score(y_test_final, y_pred_final):.4f}")
 print(f"Accuracy:  {accuracy_score(y_test_final, y_pred_final):.4f}")
 print(f"Recall:    {recall_score(y_test_final, y_pred_final):.4f}")
+
+# --- 6. Uloženie finálnej pipeline ---
+joblib.dump(best_model, 'final_pipeline_XGBoost.joblib')
+print("\nFinálna pipeline uložená ako 'final_pipeline_XGBoost.joblib'.")
